@@ -5,7 +5,7 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import br.com.alura.jpa.modelo.Conta;
 import br.com.alura.jpa.modelo.Movimentacao;
@@ -18,9 +18,9 @@ public class TesteJPQL {
 
 		Conta conta = new Conta();
 		conta.setId(1L);
-		String jpql = "SELECT m FROM Movimentacao m WHERE m.conta = :pConta";
+		String jpql = "SELECT m FROM Movimentacao m WHERE m.conta = :pConta ORDER BY m.valor DESC ";
 
-		Query query = em.createQuery(jpql);
+		TypedQuery<Movimentacao> query = em.createQuery(jpql, Movimentacao.class);
 		query.setParameter("pConta", conta);
 
 		List<Movimentacao> resultList = query.getResultList();
