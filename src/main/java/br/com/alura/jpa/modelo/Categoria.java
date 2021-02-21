@@ -12,6 +12,14 @@ public class Categoria {
 	private Long id;
 	private String nome;
 	
+	@Deprecated
+	public Categoria() {
+	}
+	
+	public Categoria(String nome) {
+		this.setNome(nome);
+	}
+	
 	public Long getId() {
 		return id;
 	}

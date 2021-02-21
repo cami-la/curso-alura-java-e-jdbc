@@ -10,6 +10,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
 @Entity
@@ -26,7 +27,7 @@ public class Movimentacao {
 	private String descricao;
 	private BigDecimal valor;
 	
-	@ManyToOne
+	@ManyToMany
 	private List<Categoria> categorias;
 	
 	@ManyToOne
@@ -67,6 +68,9 @@ public class Movimentacao {
 	}
 	public void setConta(Conta conta) {
 		this.conta = conta;
+	}
+	public void setCategorias(List<Categoria> categorias) {
+		this.categorias = categorias;
 	}
 	
 	
