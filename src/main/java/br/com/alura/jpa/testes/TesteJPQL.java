@@ -31,7 +31,7 @@ public class TesteJPQL {
 //		}
 
 		resultList.stream().forEach(m -> {
-			System.out.println("Descrição" + m.getDescricao());
+			System.out.println("Descrição: " + m.getDescricao());
 			System.out.println("Tipo: " + m.getTipoMovimentacao());
 		});
 	}
