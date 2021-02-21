@@ -19,7 +19,7 @@ public class TesteJPQLMovimentacaoDeUmaCategoria {
 		String jpql = "SELECT m FROM Movimentacao m JOIN m.categorias c WHERE c = :pCategoria";
 		
 		Categoria categoria = new Categoria();
-		categoria.setId(1L);
+		categoria.setId(3L);
 		
 		TypedQuery<Movimentacao> query = em.createQuery(jpql, Movimentacao.class);
 		query.setParameter("pCategoria", categoria);
