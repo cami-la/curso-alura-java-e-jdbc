@@ -2,6 +2,7 @@ package br.com.alura.jpa.modelo;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -22,9 +23,11 @@ public class Movimentacao {
 	private TipoMovimentacao tipoMovimentacao;
 	
 	private LocalDateTime data;
-
 	private String descricao;
 	private BigDecimal valor;
+	
+	@ManyToOne
+	private List<Categoria> categorias;
 	
 	@ManyToOne
 	private Conta conta;
