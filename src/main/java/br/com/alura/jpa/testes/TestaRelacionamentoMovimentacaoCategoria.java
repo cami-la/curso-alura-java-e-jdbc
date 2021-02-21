@@ -20,7 +20,7 @@ public class TestaRelacionamentoMovimentacaoCategoria {
 		Categoria categoria2 = new Categoria("Negócios");
 		
 		Conta conta = new Conta();
-		conta.setId(2L);
+		conta.setId(1L);
 		
 		Movimentacao movimentacao = new Movimentacao();
 		movimentacao.setDescricao("Viagem à SP");
