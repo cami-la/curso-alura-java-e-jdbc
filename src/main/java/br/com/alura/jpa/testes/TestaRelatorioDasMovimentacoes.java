@@ -13,20 +13,21 @@ public class TestaRelatorioDasMovimentacoes {
 
 	public static void main(String[] args) {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("contas");
-		EntityManager em = emf.createEntityManager(); 
-		
+		EntityManager em = emf.createEntityManager();
+
 		String jpql = "SELECT distinct c FROM Conta c LEFT JOIN FETCH c.movimentacoes";
 		TypedQuery<Conta> query = em.createQuery(jpql, Conta.class);
-		
+
 		List<Conta> contas = query.getResultList();
-		
-		contas.stream().forEach(c ->{
+
+		contas.stream().forEach(c -> {
 			System.out.println("Titular: " + c.getTitular());
 			System.out.println("Número: " + c.getAgencia());
 			System.out.println("Agência: " + c.getNumero());
-				System.out.println("Movimentações: " + c.getMovimentacoes());
+			System.out.println("Movimentações: " + c.getMovimentacoes());
+			System.out.println();
 		});
-		
+
 	}
 
 }
