@@ -15,7 +15,7 @@ public class TestaRelatorioDasMovimentacoes {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("contas");
 		EntityManager em = emf.createEntityManager(); 
 		
-		String jpql = "SELECT c FROM Conta c LEFT JOIN FETCH c.movimentacoes";
+		String jpql = "SELECT distinct c FROM Conta c LEFT JOIN FETCH c.movimentacoes";
 		TypedQuery<Conta> query = em.createQuery(jpql, Conta.class);
 		
 		List<Conta> contas = query.getResultList();
