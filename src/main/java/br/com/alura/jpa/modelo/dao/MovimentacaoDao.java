@@ -10,7 +10,7 @@ import javax.persistence.TypedQuery;
 
 import br.com.alura.jpa.modelo.MediaComData;
 
-public class MovimentacaoDAO {
+public class MovimentacaoDao {
 	public List<MediaComData> getMediaDiariaDasMovimentacoes() {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("contas");
 		EntityManager em = emf.createEntityManager();
