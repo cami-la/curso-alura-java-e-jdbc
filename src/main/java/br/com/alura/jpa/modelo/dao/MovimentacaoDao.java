@@ -11,9 +11,15 @@ import javax.persistence.TypedQuery;
 import br.com.alura.jpa.modelo.MediaComData;
 
 public class MovimentacaoDao {
+	
+	private EntityManager em;
+	
+
+	public MovimentacaoDao(EntityManager em) {
+		this.em = em;
+	}
+
 	public List<MediaComData> getMediaDiariaDasMovimentacoes() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("contas");
-		EntityManager em = emf.createEntityManager();
 		
 		String jpql = "SELECT NEW br.com.alura.jpa.modelo.MediaComData(AVG(m.valor), DAY(m.data), MONTH(m.data)) FROM Movimentacao m group by DAY(m.data), MONTH(m.data), YEAR(m.data)";
 		
@@ -23,8 +29,7 @@ public class MovimentacaoDao {
 	}
 	
 	public BigDecimal getSomaDasMovimentacoes() {
-		EntityManagerFactory emf = Persistence.createEntityManagerFactory("contas");
-		EntityManager em = emf.createEntityManager();
+		
 		
 		String jpql = "SELECT SUM(m.valor) FROM Movimentacao m";
 		TypedQuery<BigDecimal> query = em.createQuery(jpql, BigDecimal.class);
