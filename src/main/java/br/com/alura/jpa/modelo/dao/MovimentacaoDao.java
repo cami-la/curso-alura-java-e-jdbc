@@ -21,9 +21,7 @@ public class MovimentacaoDao {
 
 	public List<MediaComData> getMediaDiariaDasMovimentacoes() {
 		
-		String jpql = "SELECT NEW br.com.alura.jpa.modelo.MediaComData(AVG(m.valor), DAY(m.data), MONTH(m.data)) FROM Movimentacao m group by DAY(m.data), MONTH(m.data), YEAR(m.data)";
-		
-		TypedQuery<MediaComData> query = em.createQuery(jpql, MediaComData.class);
+		TypedQuery<MediaComData> query = em.createNamedQuery("mediaDiariaMovimentacoes", MediaComData.class);
 		
 		return query.getResultList();
 	}
