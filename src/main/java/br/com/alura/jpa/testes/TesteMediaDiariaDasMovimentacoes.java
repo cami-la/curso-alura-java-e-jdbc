@@ -5,7 +5,9 @@ import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
+
+import br.com.alura.jpa.modelo.MediaComData;
 
 public class TesteMediaDiariaDasMovimentacoes {
 
@@ -13,14 +15,14 @@ public class TesteMediaDiariaDasMovimentacoes {
 		EntityManagerFactory emf = Persistence.createEntityManagerFactory("contas");
 		EntityManager em = emf.createEntityManager();
 		
-		String jpql = "SELECT AVG(m.valor), DAY(m.data), MONTH(m.data) FROM Movimentacao m group by DAY(m.data), MONTH(m.data), YEAR(m.data)";
+		String jpql = "SELECT NEW br.com.alura.jpa.modelo.MediaComData(AVG(m.valor), DAY(m.data), MONTH(m.data)) FROM Movimentacao m group by DAY(m.data), MONTH(m.data), YEAR(m.data)";
 		
-		Query query = em.createQuery(jpql);
+		TypedQuery<MediaComData> query = em.createQuery(jpql, MediaComData.class);
 		
-		List<Object[]> mediaDasMovimentacoes = query.getResultList();
+		List<MediaComData> mediaDasMovimentacoes = query.getResultList();
 		
-		for (Object[] resultado : mediaDasMovimentacoes) {
-			System.out.println("A média das movimentações do dia " + resultado[1] + "/" + resultado[2] + " é: R$" + resultado[0]);
+		for (MediaComData resultado : mediaDasMovimentacoes) {
+			System.out.println("A média das movimentações do dia " + resultado.getDia() + "/" + resultado.getMes() + " é: R$" + resultado.getValor());
 		}
 	}
 
